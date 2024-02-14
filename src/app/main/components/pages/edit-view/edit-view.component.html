@@ -1,0 +1,5 @@
+<app-create-form *ngIf="isCreating else editForm"></app-create-form>
+
+<ng-template #editForm>
+  <app-edit-form [hero]="hero"></app-edit-form>
+</ng-template>

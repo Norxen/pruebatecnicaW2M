@@ -1,0 +1,82 @@
+$card-max-width: 300px;
+$card-margin: 20px auto;
+$card-border-radius: 10px;
+$card-border-color: #eeeeee;
+$card-min-height: 400px;
+$text-color: #333;
+$content-padding: 20px 20px;
+$action-padding: 5px;
+$action-margin-top: 0px;
+$button-flex-grow: 1;
+$button-margin: 10px 10px;
+$button-border-radius: 10px;
+$button-border: 1px solid #007bff;
+$button-bg-color: #007bff;
+$button-text-color: white;
+$button-padding: 15px;
+$button-hover-bg-color: #0056b3;
+$transition-duration: 0.2s;
+
+:host {
+  --dynamic-shadow-color: #000;
+  --base-shadow-color: #000;
+}
+
+mat-card {
+  max-width: $card-max-width;
+  margin: $card-margin;
+  border-radius: $card-border-radius;
+  overflow: auto;
+  transition: transform $transition-duration ease, box-shadow $transition-duration ease;
+  transform: scale(1);
+  min-height: $card-min-height;
+}
+
+mat-card:hover {
+  transform: scale(1.15);
+}
+
+mat-card-header {
+  text-align: center;
+  border-bottom: 1px solid $card-border-color;
+}
+
+mat-card-title, mat-card-subtitle {
+  color: $text-color;
+}
+
+mat-card-content {
+  padding: $content-padding;
+  & > p {
+    text-align: justify;
+  }
+  & span {
+    font-weight: bold;
+  }
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  padding: $action-padding;
+  margin-top: $action-margin-top;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+button[mat-button] {
+  flex-grow: $button-flex-grow;
+  margin: $button-margin;
+  border-radius: $button-border-radius;
+  border: $button-border;
+  background-color: $button-bg-color;
+  color: $button-text-color;
+  padding: $button-padding;
+  text-transform: uppercase;
+  transition: background-color $transition-duration ease;
+}
+
+button[mat-button]:hover {
+  background-color: $button-hover-bg-color;
+}

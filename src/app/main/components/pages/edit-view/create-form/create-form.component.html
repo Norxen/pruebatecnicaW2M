@@ -1,0 +1,20 @@
+<form [formGroup]="heroForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" formControlName="name" maxlength="40">
+  </div>
+  <div>
+    <label for="subtitle">Subtitle:</label>
+    <textarea formControlName="subtitle" maxlength="50" class="single-line-textarea"></textarea>
+  </div>
+  <div>
+    <label for="color">Color:</label>
+    <input type="color" formControlName="color">
+  </div>
+  <div class="button-container">
+    <button type="button" (click)="onCancel()">Cancel</button>
+    <div class="spacer"></div>
+    <button type="submit" [disabled]="!heroForm.valid" (click)="onSubmit()">Create</button>
+  </div>
+
+</form>

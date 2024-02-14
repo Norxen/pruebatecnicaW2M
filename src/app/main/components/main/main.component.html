@@ -1,0 +1,16 @@
+<header>
+  <div class="container">
+    <div class="left-group">
+      <input type="text" (input)="onInputChange($event)" [value]="inputValue" placeholder="Search"/>
+      <app-slide-toggle (checkedChange)="onToggleChange($event)"></app-slide-toggle>
+    </div>
+
+    <button (click)="addNewHero()">Add New Hero</button>
+  </div>
+</header>
+
+<app-hero-table class="table" *ngIf="toggleValue; else showCardList" [dataSource]="heroes"></app-hero-table>
+
+<ng-template #showCardList>
+  <app-hero-card-list class="table" [dataSource]="heroes"></app-hero-card-list>
+</ng-template>
