@@ -1,15 +1,13 @@
-FROM node:latest as build
+FROM node:21.6.1 as build
 
-WORKDIR /usr/src/app
-
-COPY ./ /usr/src/app/
-
+WORKDIR /app
+COPY package*.json ./
 RUN npm install
-
+RUN npx ngcc --properties es2024 browser module main --first-only --create-ivy-entry-points
+COPY . .
 RUN npm run build
 
-FROM nginx:latest
-
-COPY --from=build /usr/src/app/dist/hero-app /usr/share/nginx/html
-
+FROM nginx:stable
+COPY default.conf /etc/nginx/conf.d/
+COPY --from=build /app/dist/hero-app/browser/ /usr/share/nginx/html
 EXPOSE 80
