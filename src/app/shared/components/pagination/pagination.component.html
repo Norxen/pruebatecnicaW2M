@@ -1,0 +1,5 @@
+<div *ngIf="totalPages >= 1">
+  <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Prev</button>
+  {{ currentPage }} of {{ totalPages }}
+  <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+</div>

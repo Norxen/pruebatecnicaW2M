@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -6,13 +6,16 @@ import {
   Validators,
 } from '@angular/forms';
 import { Hero } from '../../../../interfaces/hero';
-import { HeroService } from '../../../../services/hero-service/hero-service.service';
 import { Router } from '@angular/router';
+import { HeroServiceWithApiService } from '../../../../services/hero-service-with-api/hero-service-with-api.service';
+import { UppercaseDirective } from '../../../../../shared/directives/uppercase.directive';
 
+// This component is used to create a new hero
+// It uses a reactive form to handle the input fields
 @Component({
   selector: 'app-create-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, UppercaseDirective],
   templateUrl: './create-form.component.html',
   styleUrl: './create-form.component.scss',
 })
@@ -28,7 +31,7 @@ export class CreateFormComponent {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
-    private readonly heroService: HeroService
+    private readonly heroService: HeroServiceWithApiService
   ) {}
 
   ngOnInit() {
@@ -43,6 +46,8 @@ export class CreateFormComponent {
     });
   }
 
+  // This method is called when the form is submitted
+  // It validates the form and then creates a new hero and sends it to the server
   onSubmit() {
     if (this.heroForm.valid) {
       const formValues = this.heroForm.value;
@@ -54,8 +59,9 @@ export class CreateFormComponent {
         color: formValues.color,
       };
 
-      this.heroService.addHero(createdHero);
-      this.router.navigateByUrl('main');
+      this.heroService.addHero(createdHero).subscribe((heroes) => {
+        this.router.navigateByUrl('main');
+      });
     }
   }
 

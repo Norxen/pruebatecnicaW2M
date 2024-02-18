@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HeroService } from '../../../services/hero-service/hero-service.service';
 import { Hero } from '../../../interfaces/hero';
 import { CreateFormComponent } from './create-form/create-form.component';
 import { EditFormComponent } from './edit-form/edit-form.component';
 import { CommonModule } from '@angular/common';
+import { HeroServiceWithApiService } from '../../../services/hero-service-with-api/hero-service-with-api.service';
 
 @Component({
   selector: 'app-edit-view',
@@ -14,9 +14,9 @@ import { CommonModule } from '@angular/common';
 })
 export class EditViewComponent implements OnInit {
   hero!: Hero;
-  isCreating: boolean = false;
+  isCreating: boolean = true;
 
-  constructor(private readonly heroService: HeroService) {}
+  constructor(private readonly heroService: HeroServiceWithApiService) {}
 
   ngOnInit(): void {
     this.heroService.getSelectedHero().subscribe((value) => {

@@ -4,3 +4,8 @@ export interface Hero {
   subtitle: string;
   color: string;
 }
+
+export interface HeroSearchResponse {
+  heroes: Hero[];
+  total: number;
+}

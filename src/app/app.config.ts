@@ -2,13 +2,24 @@ import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { httpErrorInterceptor } from './core/http-error/http-error.interceptor';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptors,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import { mockBackendInterceptor } from './main/core/mock-backend/mock-backend.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    { provide: HTTP_INTERCEPTORS, useValue: httpErrorInterceptor, multi: true }, provideAnimationsAsync(),
+    provideAnimationsAsync(),
+    provideHttpClient(withInterceptorsFromDi()),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: mockBackendInterceptor,
+      multi: true,
+    },
   ],
 };

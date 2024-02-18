@@ -5,25 +5,28 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  MatSlideToggleChange,
-  MatSlideToggleModule,
-} from '@angular/material/slide-toggle';
+
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-slide-toggle',
   standalone: true,
-  imports: [MatSlideToggleModule, CommonModule],
+  imports: [MatIconModule, CommonModule],
   templateUrl: './slide-toggle.component.html',
   styleUrl: './slide-toggle.component.scss',
   encapsulation: ViewEncapsulation.None,
 })
 export class SlideToggleComponent {
   @Output() checkedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  isToggled: boolean = false;
+  //Variable icon set to value of material icon window
+  icon: string = 'grid_view';
 
   constructor() {}
 
-  onChange($event: MatSlideToggleChange) {
-    this.checkedChange.emit($event.checked);
+  onChange() {
+    this.isToggled = !this.isToggled;
+    this.icon = !this.isToggled ? 'grid_view' : 'view_list';
+    this.checkedChange.emit(this.isToggled);
   }
 }

@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 import { EditFormComponent } from './edit-form.component';
 import { HeroService } from '../../../../services/hero-service/hero-service.service';
 import { Router } from '@angular/router';
-import { Hero } from '../../../../interfaces/hero';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('EditFormComponent', () => {
   let component: EditFormComponent;
@@ -24,7 +24,12 @@ describe('EditFormComponent', () => {
     routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
 
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, RouterTestingModule, EditFormComponent],
+      imports: [
+        ReactiveFormsModule,
+        RouterTestingModule,
+        EditFormComponent,
+        HttpClientTestingModule,
+      ],
       declarations: [],
       providers: [
         FormBuilder,

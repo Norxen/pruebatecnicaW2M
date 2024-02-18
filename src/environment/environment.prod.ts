@@ -1,4 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:3000/api',
+  apiUrl: 'api/heroes',
+  isMockEnabled: true, // This variable is only used because the project is without backend.
+  //In a real project, this variable should be set to false in the production environment.
 };

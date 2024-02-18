@@ -1,16 +1,21 @@
 <header>
   <div class="container">
-    <div class="left-group">
-      <input type="text" (input)="onInputChange($event)" [value]="inputValue" placeholder="Search"/>
-      <app-slide-toggle (checkedChange)="onToggleChange($event)"></app-slide-toggle>
-    </div>
-
+    <app-search-bar (search)="onSearch($event)"></app-search-bar>
+    <app-slide-toggle (checkedChange)="onToggleChange($event)"></app-slide-toggle>
+    <app-pagination [totalItems]="totalRecords" [itemsPerPage]="recordsPerPage" (pageChanged)="onPageChange($event)"></app-pagination>
     <button (click)="addNewHero()">Add New Hero</button>
   </div>
 </header>
 
-<app-hero-table class="table" *ngIf="toggleValue; else showCardList" [dataSource]="heroes"></app-hero-table>
+<div class="loading-box-container" *ngIf="isLoading">
+  <app-loading-box></app-loading-box>
+</div>
 
-<ng-template #showCardList>
-  <app-hero-card-list class="table" [dataSource]="heroes"></app-hero-card-list>
-</ng-template>
+
+<!-- Display app-hero-table or app-hero-card-list only when isLoading is false -->
+<ng-container *ngIf="!isLoading">
+  <app-hero-table class="table" *ngIf="toggleValue; else showCardList" [dataSource]="heroes"></app-hero-table>
+  <ng-template #showCardList>
+    <app-hero-card-list class="table" [dataSource]="heroes"></app-hero-card-list>
+  </ng-template>
+</ng-container>

@@ -7,12 +7,13 @@ import {
 } from '@angular/forms';
 import { Hero } from '../../../../interfaces/hero';
 import { Router } from '@angular/router';
-import { HeroService } from '../../../../services/hero-service/hero-service.service';
+import { HeroServiceWithApiService } from '../../../../services/hero-service-with-api/hero-service-with-api.service';
+import { UppercaseDirective } from '../../../../../shared/directives/uppercase.directive';
 
 @Component({
   selector: 'app-edit-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, UppercaseDirective],
   templateUrl: './edit-form.component.html',
   styleUrl: './edit-form.component.scss',
 })
@@ -28,7 +29,7 @@ export class EditFormComponent implements OnInit {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
-    private readonly heroService: HeroService
+    private readonly heroService: HeroServiceWithApiService
   ) {}
 
   ngOnInit() {
@@ -58,7 +59,6 @@ export class EditFormComponent implements OnInit {
 
     // If the format doesn't match, return null or an error
     if (!matches) {
-      console.error('Invalid RGB format');
       return rgbString;
     }
 
@@ -82,12 +82,13 @@ export class EditFormComponent implements OnInit {
       const updatedHero: Hero = {
         id: this.hero.id,
         name: formValues.name,
-        subtitle: formValues.description,
+        subtitle: formValues.subtitle,
         color: formValues.color,
       };
 
-      this.heroService.updateHero(updatedHero);
-      this.router.navigateByUrl('main');
+      this.heroService.updateHero(updatedHero).subscribe((heroes) => {
+        this.router.navigateByUrl('main');
+      });
     }
   }
 

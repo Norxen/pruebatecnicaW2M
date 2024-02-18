@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 import { HeroCardComponent } from './hero-card.component';
 
 describe('HeroCardComponent', () => {
@@ -8,10 +8,12 @@ describe('HeroCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeroCardComponent]
-    })
-    .compileComponents();
-    
+      imports: [
+        HeroCardComponent, // Your standalone component
+        HttpClientModule, // Import HttpClientModule here
+      ],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(HeroCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

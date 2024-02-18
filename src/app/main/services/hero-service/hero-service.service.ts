@@ -2,6 +2,13 @@ import { Injectable } from '@angular/core';
 import { Hero } from '../../interfaces/hero';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+/*
+    I will mantain this service as is, but I will add a new service that will use an API to fetch the heroes
+    and I will use the new service for the calls combined with the mock-backend interceptor.
+    You can check previous versions of the app to get how I used this service.
+    I forgot the pagination feature in the previous versions, so I will add it directly in the new service.
+*/
+
 @Injectable({
   providedIn: 'root',
 })

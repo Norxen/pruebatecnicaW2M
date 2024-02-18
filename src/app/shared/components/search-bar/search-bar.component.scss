@@ -1,0 +1,33 @@
+.search-container {
+  background-color: #FFF;
+  display: flex;
+  align-items: center;
+  border: 2px solid #bbb;
+  padding: 5px;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+.search-container:hover {
+  border-color: #000;
+}
+
+.search-icon {
+  color: rgba(0, 0, 0, 1);
+  margin-right: 8px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.mat-input-element {
+  border: none;
+  outline: none;
+}
+
+.search-container:focus-within {
+  border-color: #000;
+}

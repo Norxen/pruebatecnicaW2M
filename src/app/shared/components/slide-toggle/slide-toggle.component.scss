@@ -1,0 +1,42 @@
+.rectangle-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 70px;
+  height: 40px;
+  background-color: #f0f0f0;
+  border: 2px solid #bbb;
+  cursor: pointer;
+  position: relative;
+  border-radius: 25px;
+}
+
+.rectangle-container:hover{
+  border-color: #000000;
+}
+
+.square-container {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: lightskyblue;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+}
+
+.align-left {
+  left: 5px;
+}
+
+.align-right {
+  left: calc(100% - 35px);
+}
+
+.material-icons{
+  font-size: 20px;
+  color: #000000;
+}
